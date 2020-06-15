@@ -19,6 +19,12 @@ public class AdsManager : SingletonMonobehaver<AdsManager> {
     private Action skipAction = null;
     private Action failedAction = null;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(this);
+    }
+
     /// <summary>
     /// 広告呼び出し
     /// </summary>

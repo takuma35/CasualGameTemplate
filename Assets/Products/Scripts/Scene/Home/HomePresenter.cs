@@ -1,8 +1,15 @@
-﻿public class HomePresenter : SceneBase
+﻿using UnityEngine;
+using UniRx;
+
+public class HomePresenter : SceneBase
 {
     public override void OnEnter()
     {
         base.OnEnter();
+        CommonModel.GameCoin.Subscribe(x =>
+        {
+            Debug.LogFormat("GameCoin:{0}", x);
+        });
     }
 
     public override void OnLeave()
