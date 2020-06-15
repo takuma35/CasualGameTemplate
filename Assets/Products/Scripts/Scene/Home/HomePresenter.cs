@@ -9,7 +9,7 @@ public class HomePresenter : SceneBase
         CommonModel.GameCoin.Subscribe(x =>
         {
             Debug.LogFormat("GameCoin:{0}", x);
-        });
+        }).AddTo(this);
     }
 
     public override void OnLeave()
