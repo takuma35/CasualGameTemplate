@@ -1,0 +1,2 @@
+# CasualGameTemplate
+カジュアルにゲーム作りたい時に利用するプロジェクト
