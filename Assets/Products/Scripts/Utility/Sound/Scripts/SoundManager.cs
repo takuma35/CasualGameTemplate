@@ -56,31 +56,16 @@ public class SoundManager : SingletonMonobehaver<SoundManager> {
     /// Start this instance.
     /// </summary>
     private void Start () {
-
-		// 設定画面にて設定したボリュームでSoundをスタート.
-//		this.BgmMuteFlg.Value = PlayerPrefs.GetInt (MblPlayerPrefsConstants.BgmMuteFlg, 1) == 1;
-//		this.SeMuteFlg.Value = PlayerPrefs.GetInt (MblPlayerPrefsConstants.SeMuteFlg, 1) == 1;
-
-		// BGMのFlgが変更されたら音量を変更するSubscribe.
-		//this.BgmMuteFlg.Subscribe (value => {
-		//	bgmVolume.Value = value ? BgmMasterVolume : 0.0f;
-		//});
-		// BGMのFlgが変更されたら音量を変更するSubscribe.
-		//this.SeMuteFlg.Subscribe (value => {
-		//	seVolume.Value = value ? SeMasterVolume : 0.0f;
-		//});
-
 		// bgm音量のsubscribeを作成.
-		this.bgmVolume.Where (_ => bgmAudioSource != null)
+		bgmVolume.Where (_ => bgmAudioSource != null)
 			.Subscribe (v => {
 				bgmAudioSource.volume = v;
 			});
 		// se音量のsubscribeを作成.
-		this.seVolume.Where (_ => seAudioSource != null)
+		seVolume.Where (_ => seAudioSource != null)
 			.Subscribe (v => {
 				seAudioSource.volume = v;
 			});
-
 	}
 
 	/// <summary>
@@ -89,38 +74,38 @@ public class SoundManager : SingletonMonobehaver<SoundManager> {
 	/// <param name="type">Type.</param>
 	public void Play (BgmType.eBgmType type) {
 		// 同じ曲を再生しようとしていたら、何もしない.
-		if (this.currentBgmDefine != null && type == this.currentBgmDefine.type) {
+		if (currentBgmDefine != null && type == currentBgmDefine.type) {
 			return;
 		}
 
 		// すでにかかっていたら曲を止める.
-		if (this.bgmAudioSource.isPlaying) {
-			this.StopBgm ();
+		if (bgmAudioSource.isPlaying) {
+			StopBgm ();
 		}
 
 		// typeから定義を取得.
-		this.currentBgmDefine = this.bgmDefineList.bgmDefineList.FirstOrDefault (x => x.type == type);
+		currentBgmDefine = bgmDefineList.bgmDefineList.FirstOrDefault (x => x.type == type);
         // クリップ取得.
-        this.bgmAudioSource.clip = Resources.Load<AudioClip> (string.Format ("BGM/{0}", currentBgmDefine.clipName));
+        bgmAudioSource.clip = Resources.Load<AudioClip> (string.Format ("BGM/{0}", currentBgmDefine.clipName));
 		// 定義の取得ができなかったら、ループ再生をしない.
-		if (this.currentBgmDefine == null) {
+		if (currentBgmDefine == null) {
 			return;
 		}
-		// ループ時間を算出.
-		this.loopTime = ((float)this.currentBgmDefine.loopSampleValue / (float)this.currentBgmDefine.samplingRate);
-		this.endTime = ((float)this.currentBgmDefine.endSampleValue / (float)this.currentBgmDefine.samplingRate);
+        // ループ時間を算出.
+        loopTime = currentBgmDefine.loopSampleValue / currentBgmDefine.samplingRate;
+        endTime = currentBgmDefine.endSampleValue / currentBgmDefine.samplingRate;
 
 		// 再生中のBGMを監視し、ループ位置までいったらループする.
-		this.bgmAudioSource.UpdateAsObservable ()
-			.Where (_ => this.bgmAudioSource.isPlaying)
+		bgmAudioSource.UpdateAsObservable ()
+			.Where (_ => bgmAudioSource.isPlaying)
 			.Subscribe (_ => {
-				if (this.bgmAudioSource.time >= this.endTime) {
-					this.bgmAudioSource.time = this.loopTime;
+				if (bgmAudioSource.time >= endTime) {
+					bgmAudioSource.time = loopTime;
 				}
 			});
 
 		// 再生.
-		this.bgmAudioSource.Play ();
+		bgmAudioSource.Play ();
 	}
 
 
@@ -130,13 +115,13 @@ public class SoundManager : SingletonMonobehaver<SoundManager> {
 	/// <param name="type">Type.</param>
 	public void Play (SeType.eSeType type) {
 		// typeから定義を取得.
-		SeDefineList.SeDefine se = this.seDefineList.seDefineList.FirstOrDefault (x => x.type == type);
+		SeDefineList.SeDefine se = seDefineList.seDefineList.FirstOrDefault (x => x.type == type);
 		if (se == null) {
 			Debug.LogError ("SEがありません");
 			return;
 		}
         // 連続再生できるように、OneShotを使用する.
-        this.seAudioSource.PlayOneShot (Resources.Load<AudioClip> (string.Format ("SE/{0}", se.clipName)));
+        seAudioSource.PlayOneShot (Resources.Load<AudioClip> (string.Format ("SE/{0}", se.clipName)));
 	}
 
 	/// <summary>
@@ -144,34 +129,34 @@ public class SoundManager : SingletonMonobehaver<SoundManager> {
 	/// </summary>
 	public void StopBgm () {
 		currentBgmDefine = null;
-		this.bgmAudioSource.Stop ();
+		bgmAudioSource.Stop ();
 	}
 
 	/// <summary>
 	/// bgmの再生を一時停止させる.
 	/// </summary>
 	public void PauseBgm () {
-		this.bgmAudioSource.Pause ();
+		bgmAudioSource.Pause ();
 	}
 
 	/// <summary>
 	/// bgmの一時停止を解除する.
 	/// </summary>
 	public void ResumeBgm () {
-		this.bgmAudioSource.UnPause ();
+		bgmAudioSource.UnPause ();
 	}
 
 	/// <summary>
 	/// Seの再生を完全に止める.
 	/// </summary>
 	public void StopSe () {
-		this.seAudioSource.Stop ();
+		seAudioSource.Stop ();
 	}
 
 	/// <summary>
 	/// Seの再生中か.
 	/// </summary>
 	public bool IsPlayingSe () {
-		return this.seAudioSource.isPlaying;
+		return seAudioSource.isPlaying;
 	}
 }
