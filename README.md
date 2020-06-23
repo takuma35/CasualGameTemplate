@@ -20,7 +20,7 @@
 ・PopupTemplate
 
 # 使い方
-## シーン編
+## シーン編([SceneCustomManager](./Assets/Products/Scripts/Utility/Scene/SceneCustomManager.cs))
 ### シーン遷移
 SceneCustomManager の ChangeScene メソッドを呼び、引数に eScene をとる
 例：タイトルシーンへの遷移コード
@@ -38,7 +38,7 @@ BuildSettings に eScene と同じ順番で追加する
 シーンに入る時に OnEnter が呼ばれる
 シーンを出るときに OnLeave が呼ばれる
 
-## ポップアップ編
+## ポップアップ編([PopupManager](./Assets/Products/Scripts/Utility/Popup/PopupManager.cs))
 ### ポップアップの開き方
 PopupManager の Open メソッドを呼び、引数に PopupBase を継承したコードと 渡したい値(Arg class) をとる
 例：homePopupの開き方
@@ -54,7 +54,7 @@ PopupTemplate.cs をコピーしてリネームする
 ### ポップアップの説明
 Arg に自由に渡せる値を記述できる
 
-## サウンド編
+## サウンド編([SoundManager](./Assets/Products/Scripts/Utility/Sound/Scripts/SoundManager.cs))
 ### BGMの再生の仕方
 例：ホームに設定したBGMを流す
 ```
