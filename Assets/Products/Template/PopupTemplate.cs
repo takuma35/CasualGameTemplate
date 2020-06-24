@@ -9,7 +9,7 @@ public class PopupTemplate : PopupBase
     // data
     public override string Name => "PopupTemplate";
 
-    public class Arg
+    public class Arg : Argument
     {
         // argument property.
 
@@ -20,7 +20,7 @@ public class PopupTemplate : PopupBase
         public Arg() { }
     }
 
-    public override void Open<Arg>(Arg arg)
+    public override void Open(Argument arg)
     {
         base.Open(arg);
     }

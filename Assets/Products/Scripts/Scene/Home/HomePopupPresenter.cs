@@ -7,7 +7,7 @@ public class HomePopupPresenter : PopupBase
     // data
     public override string Name => "HomePopup";
 
-    public class Arg
+    public class Arg : Argument
     {
         // argument property.
 
@@ -18,9 +18,14 @@ public class HomePopupPresenter : PopupBase
         public Arg() { }
     }
 
-    public override void Open<Arg>(Arg arg)
+    Arg argument;
+
+    public override void Open(Argument arg)
     {
         base.Open(arg);
+        // キャストしてから使う
+        argument = (Arg)arg;
+        argument.OnCancelButtonAction();
     }
 
     public override void Close()

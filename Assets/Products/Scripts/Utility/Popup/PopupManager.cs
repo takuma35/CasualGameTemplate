@@ -17,7 +17,7 @@ public class PopupManager : SingletonMonoBehaviour<PopupManager>
         barrier.raycastTarget = false;
     }
 
-    public void Open<T> (PopupBase popup, T arg) where T : class
+    public void Open (PopupBase popup, Argument arg)
     {
         // barrier
         barrier.raycastTarget = true;
@@ -28,7 +28,7 @@ public class PopupManager : SingletonMonoBehaviour<PopupManager>
         popupTransform.localPosition = new Vector3(0, 0, 0);
 
         // arg
-        popup.Open<T>(arg);
+        popup.Open(arg);
     }
 
     public void Close(PopupBase popup)
