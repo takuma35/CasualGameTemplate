@@ -4,12 +4,10 @@ using UnityEngine.Events;
 
 public class HomePopupPresenter : PopupBase
 {
-    // data
-    public override string Name => "HomePopup";
-
-    public class Arg : Argument
+    public class Arg : PopupArg
     {
         // argument property.
+        public override string Name => "HomePopup";
 
         public UnityAction OnCancelButtonAction;
 
@@ -20,11 +18,11 @@ public class HomePopupPresenter : PopupBase
 
     Arg argument;
 
-    public override void Open(Argument arg)
+    public override void Open(PopupArg arg)
     {
         base.Open(arg);
         // キャストしてから使う
-        argument = (Arg)arg;
+        argument = arg as Arg;
         argument.OnCancelButtonAction();
     }
 

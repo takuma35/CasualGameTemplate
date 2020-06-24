@@ -24,6 +24,6 @@ public class HomePresenter : SceneBase
 
     public void OnOpenPopup()
     {
-        PopupManager.Instance.Open(new HomePopupPresenter(), new HomePopupPresenter.Arg());
+        PopupManager.Instance.Open(new HomePopupPresenter.Arg());
     }
 }

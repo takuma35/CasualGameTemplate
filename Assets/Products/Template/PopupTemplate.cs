@@ -7,11 +7,10 @@ using UnityEngine.Events;
 public class PopupTemplate : PopupBase
 {
     // data
-    public override string Name => "PopupTemplate";
-
-    public class Arg : Argument
+    public class Arg : PopupArg
     {
         // argument property.
+        public override string Name => "PopupTemplate";
 
         public UnityAction OnCancelButtonAction;
 
@@ -20,7 +19,7 @@ public class PopupTemplate : PopupBase
         public Arg() { }
     }
 
-    public override void Open(Argument arg)
+    public override void Open(PopupArg arg)
     {
         base.Open(arg);
     }

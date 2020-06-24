@@ -17,17 +17,17 @@ public class PopupManager : SingletonMonoBehaviour<PopupManager>
         barrier.raycastTarget = false;
     }
 
-    public void Open (PopupBase popup, Argument arg)
+    public void Open (PopupArg arg)
     {
         // barrier
         barrier.raycastTarget = true;
 
-        var popupName = string.Format("Popup/{0}", popup.Name);
+        var popupName = string.Format("Popup/{0}", arg.Name);
         // object create
-        var popupTransform = Instantiate(Resources.Load<Transform>(popupName), popupParentTransform);
-        popupTransform.localPosition = new Vector3(0, 0, 0);
+        var popupGameObject = Instantiate(Resources.Load<GameObject>(popupName), popupParentTransform);
+        popupGameObject.transform.localPosition = new Vector3(0, 0, 0);
 
-        // arg
+        var popup = popupGameObject.GetComponent<PopupBase>();
         popup.Open(arg);
     }
 
