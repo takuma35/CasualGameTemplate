@@ -6,7 +6,7 @@ using UniRx.Triggers;
 /// <summary>
 /// サウンド管理クラス.
 /// </summary>
-public class SoundManager : SingletonMonobehaver<SoundManager> {
+public class SoundManager : SingletonMonoBehaviour<SoundManager> {
 
 	/// <summary>BGM音量の規定値..</summary>
 	public const float BgmMasterVolume = 1.0f;

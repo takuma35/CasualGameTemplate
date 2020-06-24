@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class PopupManager : SingletonMonobehaver<PopupManager>
+public class PopupManager : SingletonMonoBehaviour<PopupManager>
 {
     [SerializeField]
     Transform popupParentTransform;

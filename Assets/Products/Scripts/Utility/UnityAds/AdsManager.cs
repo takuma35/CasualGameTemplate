@@ -7,7 +7,7 @@ using UnityEngine.Advertisements;
 /// <summary>
 /// Ads管理マネージャー
 /// </summary>
-public class AdsManager : SingletonMonobehaver<AdsManager> {
+public class AdsManager : SingletonMonoBehaviour<AdsManager> {
 
     [SerializeField]
     private string appleId = "";

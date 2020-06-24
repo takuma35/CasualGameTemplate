@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// 案件用シーンマネージャー.
 /// </summary>
-public class SceneCustomManager : SingletonMonobehaver<SceneCustomManager> {
+public class SceneCustomManager : SingletonMonoBehaviour<SceneCustomManager> {
 
     /// <summary>
     /// タッチ防御用.
