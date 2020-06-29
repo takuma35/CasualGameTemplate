@@ -45,10 +45,10 @@ BuildSettings に eScene と同じ順番で追加する
 
 ## ポップアップ編([PopupManager](./Assets/Products/Scripts/Utility/Popup/PopupManager.cs))
 ### ポップアップの開き方
-PopupManager の Open メソッドを呼び、引数に PopupBase を継承したコードと 渡したい値(Arg class) をとる
+PopupManager の Open メソッドを呼び、引数に 渡したい値(Arg class) をとる
 例：homePopupの開き方
 ```
-PopupManager.Instance.Open(new HomePopupPresenter(), new HomePopupPresenter.Arg());
+PopupManager.Instance.Open(new HomePopupPresenter.Arg());
 ```
 [PopupBaseを継承したコードの例](./Assets/Products/Scripts/Scene/Home/HomePopupPresenter.cs)
 
