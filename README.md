@@ -9,19 +9,27 @@
 # 構成
 ## 初期シーン構成
 ・Launcher
+
 ・Title
+
 ・Home
+
 ・InGame
+
 ・Result
 
 ## 初期コンポーネント
 ・SceneCustomManager
+
 ・PopupManager
+
 ・SoundManager
+
 ・AdsManager
 
 ## テンプレート
 ・TemplateScene
+
 ・PopupTemplate
 
 # 使い方
